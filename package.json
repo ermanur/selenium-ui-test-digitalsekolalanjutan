@@ -1,0 +1,18 @@
+{
+  "name": "selenium-ui-test-digitalsekolalanjutan",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/saucedemo-mocha.js",
+    "test:all" : "mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "selenium-webdriver": "^4.29.0"
+  },
+  "devDependencies": {
+    "mocha": "^11.1.0"
+  }
+}
