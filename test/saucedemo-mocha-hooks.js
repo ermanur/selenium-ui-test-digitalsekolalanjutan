@@ -36,11 +36,32 @@ async function saucedemoLoginTest() {
       );
       console.log("Testing Login Success!");
     }),
-      it("TC02-Login Failed", async function () {
-        await driver.findElement(By.id("user-name")).sendKeys("standard_user");
+    it("TC02-Login Failed, Password failed", async function () {
+      await driver
+      .findElement(By.id("user-name"))
+      .sendKeys("standard_user");
+      await driver
+      .findElement(By.xpath("//input[@id='password']"))
+      .sendKeys("passwordsalah");
+        
+      await driver.findElement(By.name("login-button")).click();
+        
+      //assertion
+      let errorMessage = await driver
+      .findElement(By.css(".error-message-container"))
+      .getText();
+      assert.strictEqual(
+      errorMessage.includes("Username and password do not match"),
+      true,
+      "Error Message do not match"
+      );
+      console.log("Testing Login Failed = Success!");
+      });
+      
+      it("TC03-Login Failed, Password failed", async function () {
         await driver
-          .findElement(By.xpath("//input[@id='password']"))
-          .sendKeys("passwordsalah");
+        .findElement(By.xpath("//input[@id='password']"))
+        .sendKeys("secret_sauce");
 
         await driver.findElement(By.name("login-button")).click();
 
@@ -49,12 +70,66 @@ async function saucedemoLoginTest() {
           .findElement(By.css(".error-message-container"))
           .getText();
         assert.strictEqual(
-          errorMessage.includes("Username and password do not match"),
+          errorMessage.includes("Epic sadface: Username is required"),
           true,
-          "Error Message do not match"
+          "Error Message  Username is required"
         );
         console.log("Testing Login Failed = Success!");
-      });
+        });
+        
+        it("TC04 -Login Failed Password Empty", async function () {
+          await driver
+            .findElement(By.id("user-name"))
+            .sendKeys("standard_user");
+
+          await driver.findElement(By.name("login-button")).click();
+
+          //assertion
+          let errorMessage = await driver
+            .findElement(By.css(".error-message-container"))
+            .getText();
+          assert.strictEqual(
+            errorMessage.includes("Epic sadface: Password is required"),
+            true,
+            "Error Message Password is required"
+          );
+          console.log("Testing Login Failed = Success!");
+          });
+
+          it("TC05 -Login Failed Isername and Password Empty", async function () {
+          await driver.findElement(By.name("login-button")).click();
+
+          //assertion
+          let errorMessage = await driver
+            .findElement(By.css(".error-message-container"))
+            .getText();
+          assert.strictEqual(
+            errorMessage.includes("Epic sadface: Username is required"),
+            true,
+            "Error Message  Username is required"
+          );
+          console.log("Testing Login Failed = Success!");
+            });
+
+        it("TC06-Login Failed, Username Failed", async function () {
+          await driver.findElement(By.id("user-name")).sendKeys("erma");
+          await driver
+            .findElement(By.xpath("//input[@id='password']"))
+            .sendKeys("secret_sauce");
+  
+          await driver.findElement(By.name("login-button")).click();
+  
+            //assertion
+            let errorMessage = await driver
+            .findElement(By.css(".error-message-container"))
+            .getText();
+          assert.strictEqual(
+            errorMessage.includes("Username and password do not match"),
+            true,
+            "Error Message do not match"
+          );
+          console.log("Testing Login Failed = Success!");
+        });
     afterEach(async function () {
       await driver.quit();
     });
