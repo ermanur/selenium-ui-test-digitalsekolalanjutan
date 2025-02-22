@@ -61,7 +61,7 @@ async function saucedemoInventory() {
         true,
         'Product does not include "Products"'
          );
-        console.log("Testing Login Success!");
+        console.log("Testing Login and add to cart Success!");
       } finally {
         await driver.quit();
       }

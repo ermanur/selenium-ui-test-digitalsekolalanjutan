@@ -9,15 +9,15 @@ async function saucedemoLoginTestCross() {
   const browsers = [
     {
       name: "chrome",
-      options: new chrome.Options().addArguments("--headless"),
+      options: new chrome.Options().addArguments("--headless=new"),
     },
     {
       name: "firefox",
-      options: new firefox.Options().addArguments("--headless"),
+      options: new firefox.Options().addArguments("--headless=new"),
     },
     {
       name: "MicrosoftEdge",
-      options: new edge.Options().addArguments("--headless"),
+      options: new edge.Options().addArguments("--headless=new"),
     },
   ];
 
