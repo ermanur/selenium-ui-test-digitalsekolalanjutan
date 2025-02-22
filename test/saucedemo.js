@@ -57,7 +57,7 @@ async function saucedemoLoginTest() {
     'Product does not include "Products"'
      );
   } finally {
-    //await driver.quit();
+    await driver.quit();
   }
 }
 

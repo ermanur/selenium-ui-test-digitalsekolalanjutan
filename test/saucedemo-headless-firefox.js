@@ -13,7 +13,6 @@ async function saucedemoLoginTest() {
     .setFirefoxOptions(options)
     .build();
 
-  // Exception Handling & Conclusion
  // Exception Handling & Conclusion
    try {
      // Buka URL di browser
