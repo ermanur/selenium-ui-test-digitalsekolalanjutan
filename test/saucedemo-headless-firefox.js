@@ -5,7 +5,7 @@ const firefox = require("selenium-webdriver/firefox");
 async function saucedemoLoginTest() {
   // Menambahkan chrome option untuk menggunakan User-Agent yang menyerupai browser asli
   let options = new firefox.Options();
-  options.addArguments("--headless");
+  options.addArguments("--headless=new");
 
   // Membuat koneksi dengan webdriver
   let driver = await new Builder()
